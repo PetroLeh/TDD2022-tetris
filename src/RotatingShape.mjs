@@ -19,6 +19,17 @@ export class RotatingShape {
         return str;
     }
 
+    rotateLeft() {
+        let str = "";
+        for (let row = 0; row < this.shape.length; row++) {
+            for (let column = 0; column < this.shape.length; column++) {
+                str += this.shape[column][2 - row];
+            }
+            str += "\n"
+        }
+        return str;  
+    }
+
     toString() {
         let str = "";
         for (let row = 0; row < this.shape.length; row++) {
