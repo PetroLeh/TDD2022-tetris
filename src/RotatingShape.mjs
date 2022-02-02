@@ -1,8 +1,10 @@
 export class RotatingShape {
     shape = [];
+    size;
 
     constructor(shape) {
-        shape = shape.replaceAll(" ", "").trim().split("\n");        
+        shape = shape.replaceAll(" ", "").trim().split("\n");
+        this.size = shape.length - 1;      
         for (let i = 0; i < shape.length; i++) {
             this.shape[i] = Array.from(shape[i]);
         }
@@ -12,7 +14,7 @@ export class RotatingShape {
         let str = "";
         for (let row = 0; row < this.shape.length; row++) {
             for (let column = 0; column < this.shape.length; column++) {
-                str += this.shape[2 - column][row];
+                str += this.shape[this.size - column][row];
             }
             str += "\n"
         }
@@ -23,7 +25,7 @@ export class RotatingShape {
         let str = "";
         for (let row = 0; row < this.shape.length; row++) {
             for (let column = 0; column < this.shape.length; column++) {
-                str += this.shape[column][2 - row];
+                str += this.shape[column][this.size - row];
             }
             str += "\n"
         }
