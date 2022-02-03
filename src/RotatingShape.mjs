@@ -18,7 +18,7 @@ export class RotatingShape {
             }
             str += "\n"
         }
-        return str;
+        return new RotatingShape(str);
     }
 
     rotateLeft() {
@@ -29,7 +29,7 @@ export class RotatingShape {
             }
             str += "\n"
         }
-        return str;  
+        return new RotatingShape(str);  
     }
 
     toString() {
