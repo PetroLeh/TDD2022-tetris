@@ -23,6 +23,8 @@ export class RotatingShape {
 
     rotateLeft() {
         let str = "";
+
+
         for (let row = 0; row < this.shape.length; row++) {
             for (let column = 0; column < this.shape.length; column++) {
                 str += this.shape[column][this.size - row];
