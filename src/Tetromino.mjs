@@ -11,6 +11,10 @@ export class Tetromino {
                                     .....
                                     .....`, 2, 0);
 
+    static O_SHAPE = new Tetromino(`.OO
+                                    .OO
+                                    ...`, 1, 0);
+
     orientations = [];
     currentOrientation;
 
