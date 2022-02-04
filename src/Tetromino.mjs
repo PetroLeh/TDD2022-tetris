@@ -3,29 +3,40 @@ import { RotatingShape } from "./RotatingShape.mjs";
 export class Tetromino {
     static T_SHAPE = new Tetromino(`.T.
                                     TTT
-                                    ...`);
+                                    ...`, 4, 0);
 
     static I_SHAPE = new Tetromino(`.....
                                     .....
                                     IIII.
                                     .....
-                                    .....`);
+                                    .....`, 2, 0);
 
-    shape;
+    orientations = [];
+    currentOrientation;
 
-    constructor(shape) {
-        this.shape = new RotatingShape(shape);
+    constructor(shape, orientations, currentOrientation) {
+        if (shape == null) {
+            this.orientations = orientations;
+            this.currentOrientation = (orientations.length + currentOrientation) % orientations.length;
+        } else {
+            shape = new RotatingShape(shape);
+            this.currentOrientation = currentOrientation;
+            for (let i = 0; i < orientations; i++) {
+                this.orientations.push(shape);
+                shape = shape.rotateRight()
+            }
+        }
     }
 
     rotateRight() {
-        return this.shape.rotateRight();
+        return new Tetromino(null, this.orientations, this.currentOrientation + 1);
     }
 
     rotateLeft() {
-        return this.shape.rotateLeft();
+        return new Tetromino(null, this.orientations, this.currentOrientation - 1);
     }
 
     toString() {
-        return this.shape.toString();
+        return this.orientations[this.currentOrientation].toString();
     }
 }
