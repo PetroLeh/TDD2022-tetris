@@ -1,13 +1,16 @@
 export class Board {
   width;
   height;
+  center;
   board = [];
   falling;
   fallingAt;
+  horizontalPosition;
 
   constructor(width, height) {
     this.width = width;
     this.height = height;
+    this.center = Math.floor(this.width / 2);
     for (let i = 0; i < height; i++) {
         this.board[i] = [];
         for (let j = 0; j < width; j++) {
@@ -27,7 +30,23 @@ export class Board {
     }
     this.falling = block.toString();
     this.fallingAt = 0;
-    this.board[0][1] = block.toString();
+    this.horizontalPosition = this.center;
+    this.drawFallingBlock();
+  }
+
+  drawFallingBlock() {
+      if(this.hasFalling()) {
+        let blockSize = this.sizeOf(this.falling);
+        let halfOfBlock = Math.floor(blockSize / 2);
+        for (let i = 0; i < blockSize; i++) {
+            this.board[this.fallingAt + i][this.horizontalPosition - halfOfBlock + i] = this.falling.toString();
+        }
+        
+      }    
+  }
+
+  sizeOf(block) {
+      return block.toString().split("\n").length;
   }
 
   tick() {
